@@ -1,97 +1,96 @@
 const array = [
-  ["vJrwpWtwJgWrhcsFMMfFFhFp"],
-  ["jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL"],
-  ["PmmdzqPrVvPwwTWBwg"],
-  ["wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn"],
-  ["ttgJtRGJQctTZtZT"],
-  ["CrZsJsPPZsGzwwsLwLmpwMDw"],
+  "vJrwpWtwJgWrhcsFMMfFFhFp",
+  "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL",
+  "PmmdzqPrVvPwwTWBwg",
+  "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn",
+  "ttgJtRGJQctTZtZT",
+  "CrZsJsPPZsGzwwsLwLmpwMDw",
 ];
 const alfa=[
-    {"a":1},
-    {"b":2},
-    {"c":3},
-    {"d":4},
-    {"e":5},
-    {"f":6},
-    {"g":7},
-    {"h":8},
-    {"i":9},
-    {"j":10},
-    {"k":11},
-    {"l":12},
-    {"m":13},
-    {"n":14},
-    {"o":15},
-    {"p":16},
-    {"q":17},
-    {"r":18},
-    {"s":19},
-    {"t":20},
-    {"u":21},
-    {"v":22},
-    {"x":23},
-    {"w":24},
-    {"y":25},
-    {"z":26},
-    {"A":27},
-    {"B":28},
-    {"C":29},
-    {"D":30},
-    {"E":31},
-    {"F":32},
-    {"G":33},
-    {"H":34},
-    {"I":35},
-    {"J":36},
-    {"K":37},
-    {"L":38},
-    {"M":39},
-    {"N":40},
-    {"O":41},
-    {"P":42},
-    {"Q":43},
-    {"R":44},
-    {"S":45},
-    {"T":46},
-    {"U":47},
-    {"V":48},
-    {"W":49},
-    {"X":50},
-    {"Y":51},
-    {"Z":52},
+    {type:"a",value:1},
+    {type:"b",value:2},
+    {type:"c",value:3},
+    {type:"d",value:4},
+    {type:"e",value:5},
+    {type:"f",value:6},
+    {type:"g",value:7},
+    {type:"h",value:8},
+    {type:"i",value:9},
+    {type:"j",value:10},
+    {type:"k",value:11},
+    {type:"l",value:12},
+    {type:"m",value:13},
+    {type:"n",value:14},
+    {type:"o",value:15},
+    {type:"p",value:16},
+    {type:"q",value:17},
+    {type:"r",value:18},
+    {type:"s",value:19},
+    {type:"t",value:20},
+    {type:"u",value:21},
+    {type:"v",value:22},
+    {type:"x",value:23},
+    {type:"w",value:24},
+    {type:"y",value:25},
+    {type:"z",value:26},
+    {type:"A",value:27},
+    {type:"B",value:28},
+    {type:"C",value:29},
+    {type:"D",value:30},
+    {type:"E",value:31},
+    {type:"F",value:32},
+    {type:"G",value:33},
+    {type:"H",value:34},
+    {type:"I",value:35},
+    {type:"J",value:36},
+    {type:"K",value:37},
+    {type:"L",value:38},
+    {type:"M",value:39},
+    {type:"N",value:40},
+    {type:"O",value:41},
+    {type:"P",value:42},
+    {type:"Q",value:43},
+    {type:"R",value:44},
+    {type:"S",value:45},
+    {type:"T",value:46},
+    {type:"U",value:47},
+    {type:"V",value:48},
+    {type:"W",value:49},
+    {type:"X",value:50},
+    {type:"Y",value:51},
+    {type:"Z",value:52},
 ]
+let totalvalue = []
+
 const fs = require('fs')
-const data =fs.readFileSync('input.txt', 'utf8').split("\n").map(x => x.split(" "))
+const data =fs.readFileSync('input.txt', 'utf8').split("\n")
 
-array.forEach(rucksacks=>{
-    rucksacks.forEach(rucksack =>{
-        function split (str) {
-            const half = str.length/2
-            const result = [str.slice(0, half), str.slice(half)];
-            return result;
+function split (str) {
+    const half = str.length/2
+    const result = [str.slice(0, half), str.slice(half)];
+    return result;
+}
+function findletter(word,letter,mySet) {
+    let letters = letter.split("")
+    letters.forEach(x=>{
+        if(word.includes(x)){
+            mySet.add(x)  
         }
-        const splitWords = split(rucksack);
+    })
+}
 
-        let mySet = new Set([])
-
-        function findletter(word,letter) {
-            let letters = letter.split("")
-            letters.forEach(x=>{
-                if(word.includes(x)){
-                    mySet.add(x)  
-                }
-            })
-        }
-        findletter(splitWords[0],splitWords[1])
-    
-        mySet.forEach(x=>{
-            alfa.forEach(y=>{
-                console.log(x,y)
-
-            })
+data.forEach(rucksack =>{
+    const splitWords = split(rucksack);
+    let mySet = new Set([])
+    findletter(splitWords[0],splitWords[1],mySet)
+    mySet.forEach(x=>{
+        alfa.forEach(y=>{
+            if(x=== y.type){
+                totalvalue.push(y.value)
+            }
         })
-        
+    }) 
     })  
-})
+console.log(totalvalue.reduce((x,y)=>{return x+y},0))
 
 
