@@ -1,15 +1,40 @@
-const array = [
-  [2 - 4, 6 - 8],
-  [2 - 3, 4 - 5],
-  [5 - 7, 7 - 9],
-  [2 - 8, 3 - 7],
-  [6 - 6, 4 - 6],
-  [2 - 6, 4 - 8],
-];
 
-const fs = require('fs')
-const data =fs.readFileSync('input.txt', 'utf8').split("\n").map(x => x.split(" "))
+const fs = require("fs");
+const data = fs.readFileSync("input.txt", "utf8").split("\n").map(x=>x.split(",").map(x=>x.split("-")))
 
-array.forEach(list => {x =>
-    console.log(x)
-});
+const testData = fs.readFileSync("testinput.txt", "utf8").split("\n").map(x=>x.split(",").map(x=>x.split("-")))
+console.log(testData)
+const container =[]
+testData.forEach(x=>{
+  const firstsections = x[0]
+  const secondsections = x[1]
+  const firstFS = parseInt(firstsections[0])
+  const secondFS = parseInt(firstsections[1])
+  const firstSS = parseInt(secondsections[0])
+  const secondSS = parseInt(secondsections[1])
+
+  if(firstFS>=firstSS&&firstFS<=secondSS){
+    console.log("första är innanför")
+    if(secondFS>=firstSS&&secondFS<= secondSS){
+      console.log("båda är innanför",firstFS,secondFS,",",firstSS,secondSS)
+      container.push(1)
+    }else{
+      console.log("delvis utanför")
+    }
+  }else if(firstSS>=firstFS&&firstSS<=secondFS){
+    console.log("andra är innanför")
+    if(secondSS>=firstFS&&secondSS<=secondFS){
+      console.log("båda är innanför",firstFS,secondFS,",",firstSS,secondSS)
+      container.push(1)
+    }else{
+      console.log("delvis utanför")
+    }
+  }else{
+    console.log("Utanför")
+  }
+})
+console.log(container)
+const total = container.reduce((x,y)=>{return x+y},0)
+console.log(total)
+
+
