@@ -1,7 +1,4 @@
-Advent of Code[About][Events][Shop][Settings][Log Out]Emmasi 2*
-        //2022[Calendar][AoC++][Sponsors][Leaderboard][Stats]
-Our sponsors help make Advent of Code possible:
-Exoscale - Where to host your next application? Discover our simple and secure European cloud platform and get started in seconds. Happy coding!
+
 --- Day 3: Rucksack Reorganization ---
 One Elf has the important job of loading all of the rucksacks with supplies for the jungle journey. Unfortunately, that Elf didn't quite follow the packing instructions, and so a few items now need to be rearranged.
 
