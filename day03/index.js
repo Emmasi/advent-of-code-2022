@@ -80,9 +80,11 @@ data.forEach(rucksack =>{
     const splitWords = split(rucksack);
     findletter(splitWords[0],splitWords[1],mySet)
     mySet.forEach(x=>{
+        alfa.forEach(y=>{
             if(x=== y.type){
                 totalvalue.push(y.value)
             }
+            })   
         })
 })
  
